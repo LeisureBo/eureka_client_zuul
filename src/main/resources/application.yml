@@ -10,6 +10,7 @@ spring:
   application:
     name: eureka-client-zuul
 zuul:
+  # prefix: /common #为zuul设置一个公共的前缀
   routes:
     api-ribbon:
       # url: http://localhost:9001/
