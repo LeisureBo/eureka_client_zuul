@@ -18,8 +18,8 @@ import com.netflix.zuul.exception.ZuulException;
  * @author 王博
  * @version 2018年6月24日　下午7:46:59
  */
-@Component
-public class MyZuulFilter extends ZuulFilter {
+//@Component
+public class TokenAuthFilter extends ZuulFilter {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -61,7 +61,7 @@ public class MyZuulFilter extends ZuulFilter {
 	 */
 	@Override
 	public int filterOrder() {
-		return 0;
+		return 1;
 	}
 
 	/**

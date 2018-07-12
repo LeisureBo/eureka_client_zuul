@@ -4,14 +4,20 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8091/eureka/
+  instance:
+    prefer-ip-address: true
 spring:
   application:
     name: eureka-client-zuul
 zuul:
   routes:
-    api-a:
-      path: /api-a/**
+    api-ribbon:
+      # url: http://localhost:9001/
+      path: /ribbon/**
       service-id: eureka-client-ribbon
-    api-b:
-      path: /api-b/**
+    api-feign:
+      path: /feign/**
       service-id: eureka-client-feign
+    api-msgpush:
+      path: /msgpush/**
+      service-id: cloud-msg-push
