@@ -4,16 +4,19 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8091/eureka/
-    registry-fetch-interval-seconds: 15
+    # 从eureka注册中心抓取注册服务信息的时间间隔
+    registry-fetch-interval-seconds: 5
   instance:
     prefer-ip-address: true
 spring:
   application:
     name: eureka-client-zuul
 zuul:
-  # prefix: /common # 为zuul设置一个公共的前缀
+  # 为zuul设置一个公共的前缀
+  # prefix: /common
   # 需要忽略的头部信息，不在传播到其他服务(zuul开启跨域时需要配置)
-  # sensitive-headers: Access-Control-Allow-Credentials,Access-Control-Allow-Origin
+  # sensitive-headers: Access-Control-Allow-Origin
+  # ignored-headers: Access-Control-Allow-Credentials,Access-Control-Allow-Origin,Vary,X-Frame-Options
   routes:
     api-ribbon:
       # url: http://localhost:9001/

@@ -2,6 +2,8 @@ package com.bo.cloud.web.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
@@ -17,9 +19,12 @@ import com.netflix.zuul.exception.ZuulException;
 @Component
 public class WebSocketFilter extends ZuulFilter {
 
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Override
 	public Object run() throws ZuulException {
 		HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
+		logger.info("step into websocket filter --> " + request.getRequestURL());
 		String upgradeHeader = request.getHeader("Upgrade");
 		if(upgradeHeader == null) upgradeHeader = request.getHeader("upgrade");
 		if (null != upgradeHeader && "websocket".equalsIgnoreCase(upgradeHeader)) {
